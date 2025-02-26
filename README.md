@@ -12,6 +12,6 @@ run the script to install required tools
 ```
 sudo apt update
 chmod +x ./tools/install.sh
-./tools/install.sh
+sudo ./tools/install.sh
 ```
 
