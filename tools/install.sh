@@ -74,6 +74,8 @@ echo "export PATH=$TOOLCHAIN_DIR/riscv64-unknown-elf-gcc-8.3.0-2019.08.0-x86_64-
 
 # Reload .bashrc to apply changes
 source ~/.bashrc
-
+echo "Clean Up"
+echo "Removing riscv64-unknown-elf-gcc-8.3.0-2019.08.0-x86_64-linux-ubuntu14.tar.gz"
+rm $TOOLCHAIN_DIR/riscv64-unknown-elf-gcc-8.3.0-2019.08.0-x86_64-linux-ubuntu14.tar.gz
 echo "Done with toolchain installation!"
 
