@@ -28,11 +28,11 @@
 Path 1: VIOLATED (-0.893 ns) Setup Check
 ```
 
-Path 1 = this is the first reported path. <\br>
-VIOLATED = this path doesn’t meet timing. <\br>
-(-0.893 ns) = slack (negative means failing by 0.893 ns). <\br>
-Setup Check = tool is checking that data arrives before the capture clock edge. <\br>
-/CK->TD → tool is describing the clock pin → data pin timing arc of the endpoint register. <\br>
+Path 1 = this is the first reported path. </br>
+VIOLATED = this path doesn’t meet timing. </br>
+(-0.893 ns) = slack (negative means failing by 0.893 ns). </br>
+Setup Check = tool is checking that data arrives before the capture clock edge. </br>
+/CK->TD → tool is describing the clock pin → data pin timing arc of the endpoint register. </br>
 
 ### Line 9: View
 ```
