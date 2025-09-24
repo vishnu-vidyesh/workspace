@@ -38,15 +38,15 @@ Setup Check = tool is checking that data arrives before the capture clock edge. 
 ```
 View: sfunc_ss0p81v125c_RCmax
 ```
-This is the corner (timing library + RC parasitic view).
-ss0p81v125c = slow-slow corner at 0.81V, 125°C (pessimistic).
-RCmax = max RC parasitics corner.
+This is the corner (timing library + RC parasitic view). </br>
+ss0p81v125c = slow-slow corner at 0.81V, 125°C (pessimistic). </br>
+RCmax = max RC parasitics corner. </br>
 ### Line 10: Group
 ```
 Group: bus_sdio_gclk
 ```
-This path belongs to the clock group defined on bus_sdio_gclk.
-Paths are grouped per clock domain for reporting.
+This path belongs to the clock group defined on bus_sdio_gclk. </br>
+Paths are grouped per clock domain for reporting. </br>
 
 ### Lines 11–14: Startpoint / Endpoint
 ```
@@ -56,12 +56,12 @@ Clock: (F) bus_sdio_gclk
 Endpoint: (R) .../payload_reg_a_reg[0]/TD
 Clock: (R) bus_sdio_gclk
 ```
-Startpoint = launch flip-flop (or latch).
-(F) = “functional” (as opposed to test, false, etc).
-/GB = the Q output pin of the launching register.
-Endpoint = capture register’s data pin (TD).
-Both driven by the same clock bus_sdio_gclk.
-So it’s a reg-to-reg path within the same clock domain.
+Startpoint = launch flip-flop (or latch). </br>
+(F) = “functional” (as opposed to test, false, etc). </br>
+/GB = the Q output pin of the launching register. </br>
+Endpoint = capture register’s data pin (TD). </br>
+Both driven by the same clock bus_sdio_gclk. </br>
+So it’s a reg-to-reg path within the same clock domain. </br>
 
 ### Lines 16–20: Timing origin
 ```
@@ -71,16 +71,16 @@ Src Latency:+    0.000        0.000
 Net Latency:+    0.000 (I)   -0.150 (I)
 Arrival:=        2.500        1.100
 ```
-Clock Edge = capture happens at 2.500 ns, launch at 1.250 ns.
-→ This is your clock period division. Likely period = 1.25 ns * 2 = 2.5 ns (400 MHz).
-Src Latency = no additional modeled source latency.
-Net Latency (I) = insertion delay from clock tree.
-Launch clock arrives earlier than ideal (negative 0.150).
-Capture clock arrives at 0.000.
-→ So there is clock skew helping or hurting.
-Arrival = the effective clock edge time used for timing math:
-Launch edge at 1.100 ns (1.250 – 0.150).
-Capture edge at 2.500 ns (2.500 + 0.000).
+Clock Edge = capture happens at 2.500 ns, launch at 1.250 ns. </br>
+→ This is your clock period division. Likely period = 1.25 ns * 2 = 2.5 ns (400 MHz). </br>
+Src Latency = no additional modeled source latency. </br>
+Net Latency (I) = insertion delay from clock tree. </br>
+Launch clock arrives earlier than ideal (negative 0.150). </br>
+Capture clock arrives at 0.000. </br>
+→ So there is clock skew helping or hurting. </br>
+Arrival = the effective clock edge time used for timing math: </br>
+Launch edge at 1.100 ns (1.250 – 0.150). </br>
+Capture edge at 2.500 ns (2.500 + 0.000). </br>
 
 ### Lines 22–24: Requirements
 ```
@@ -88,31 +88,31 @@ Setup:-    0.079
 Uncertainty:-    0.625
 Required Time:=    1.796
 ```
-Setup 0.079 = library setup time of the endpoint flop (time before clock edge data must be stable).
-Uncertainty 0.625 = clock uncertainty (jitter, variation) applied → shrinks available timing window.
-Required Time 1.796 = Capture edge (2.500) - setup (0.079) - uncertainty (0.625) = 1.796 ns.
-This is the latest the data can arrive and still meet setup.
+Setup 0.079 = library setup time of the endpoint flop (time before clock edge data must be stable). </br>
+Uncertainty 0.625 = clock uncertainty (jitter, variation) applied → shrinks available timing window. </br>
+Required Time 1.796 = Capture edge (2.500) - setup (0.079) - uncertainty (0.625) = 1.796 ns. </br>
+This is the latest the data can arrive and still meet setup. </br>
 
 ### Lines 25–26: Actual arrival
 ```
 Launch Clock:=    1.100
 Data Path:+       1.590
 ```
-Launch Clock 1.100 = when data starts launching from the source register.
-Data Path 1.590 = how long the combinational + routing takes.
-Arrival time = 1.100 + 1.590 = 2.690 ns.
-(but you see 2.500 in the table because of formatting; detailed report shows actual accumulation).
+Launch Clock 1.100 = when data starts launching from the source register. </br>
+Data Path 1.590 = how long the combinational + routing takes. </br>
+Arrival time = 1.100 + 1.590 = 2.690 ns. </br>
+(but you see 2.500 in the table because of formatting; detailed report shows actual accumulation). </br>
 
 ### Line 27: Slack
 ```
 Slack:= -0.893
 ```
-Slack = Required – Arrival = 1.796 – 2.689 ≈ -0.893 ns.
-Means the data arrives ~0.9 ns too late.
+Slack = Required – Arrival = 1.796 – 2.689 ≈ -0.893 ns. </br>
+Means the data arrives ~0.9 ns too late. </br>
 
 ## Summary
-- Launch flop launches data at 1.100 ns.
-- Data takes 1.590 ns to travel through logic/nets.
-- So it arrives at capture flop at 2.689 ns.
+- Launch flop launches data at 1.100 ns. </br>
+- Data takes 1.590 ns to travel through logic/nets. </br>
+- So it arrives at capture flop at 2.689 ns. </br>
 - Capture flop requires data to be there by 1.796 ns (after subtracting setup + uncertainty).
 - So it’s late by 0.893 ns → setup violation.
