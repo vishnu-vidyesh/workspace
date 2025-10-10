@@ -22,6 +22,7 @@ sudo apt-get install patchutils bc -y
 sudo apt-get install zlib1g-dev libexpat1-dev -y
 sudo apt-get install git -y
 sudo apt-get install gtkwave -y
+sudo apt install perl-tk
 
 # Download and extract RISC-V GCC toolchain
 cd $TOOLCHAIN_DIR
