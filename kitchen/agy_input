@@ -1,0 +1,15 @@
+Information:
+1. there file @async_fifo_grey.v
+2. the git https://github.com/pulp-platform/axi.git is cloned as @git in the local folder
+
+TODO:
+1. update the script to add the below mentioned feature
+	a. script @generate_nic.py now should also check for the field Clock Group in the file @switch_config.json and do the below
+	b. set a base clock called nic_base_clk that connects to u_interconnect
+	c. go through the git @axi to use its modules to give the below features
+	d. connect cdc modules between nic_top ports and the instace u_interconnect based on the the clock group mentioned in @switch_config.json. use the cdc modules given in @axi
+	d. if the Clock Group is mentioned as nic_clk then skip instantiating async_fifo_grey and bypass the cdc as none is required 
+	e. update the output nic_top module the axi cdc instances connected properly and bring out the clock groups mentioned in @switch_config.json. as ports 
+
+Not TODO:
+

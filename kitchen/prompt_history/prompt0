@@ -1,0 +1,21 @@
+Information:
+1. there is a git repository names @gen_amba_2021 in the folder
+2. you can generate either an AXI/AHB/APB interconnect with it
+3. It has a @README.md file that has instructions to generate the interconnect
+4. there is a module of an async fifo in the file @async_fifo_grey.v
+5. there is a file @switch_config.json that has the information of interconnect customize the generated interconnect
+
+TODO:
+1. go through the files mentioned in the information section
+2. understand the format port and parameter format of the generated interconnect gen_amba_2021/gen_amba_axi/amba_axi_m3s4.v 
+3. i want a script that does the below
+4. read the file @switch_config.json 
+5. generate a base interconnect after counting the number of slaves and masters mentioned in @switch_config.json
+4. write a wrapper module called nic_top.v that has the below
+	a. instance of the generated base interconnect
+	b. address parameter set according to @switch_config.json base and range
+	c. ports of the module nic_top must have the custom Port Names mentioned in @switch_config.json
+	d. bring out the single clock and reset names nic_clk and resetn to the top module nic_top
+
+Not TODO:
+1. dont worry about Clock Group mentioned in @switch_config.json yet. bring single clock called nic_clk
